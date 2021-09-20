@@ -3,18 +3,26 @@
     <head>
         <script src="angular.js"></script>
         <title>Filters</title>
+        
         <link href="style.css" rel="stylesheet" type="text/css "/>
     </head>
     <body ng-init="customers=[{joined: '2000-12-02' ,name: 'meena',city: 'chennai' ,ordertotal:19.99},{joined:'1999-12-02' ,name:'karthi',city:'delhi' ,ordertotal:18.99},{joined:'1998-12-02' ,name:'anu',city:'madhurai',ordertotal:17.99 }] ">
-        <h2 ng-class='green'>Customers</h2>
+        <input type="button" value="set color" ng-click="myStyle={color:'red'}">
+        <input type="button" value="set background" ng-click="myStyle={'background-color':'blue'}">
+        <input type="button" value="clear" ng-click="myStyle={}" >
+        <br>
+        <h2 ng-style="myStyle">Customers</h2>
         Filter:<input type="text" ng-model="customerFilter.name"/>
         <br /><br />
         <table>
             <tr>
-                <th ng-click="sortBy='name';reverse=!reverse">name</th>
-                <th ng-click="sortBy='city';reverse=!reverse">city</th>
-                <th ng-click="sortBy='ordertotal';reverse=!reverse">order Total</th>
-                <th ng-click="sortBy='joined';reverse=!reverse">Joined</th>
+                <input type="button" value="table color" ng-click="newStyle={color:'green'}">
+                <input type="button" value="clear" ng-click="newStyle{}">
+                <br>
+                <th ng-style="newStyle" ng-click="sortBy='name';reverse=!reverse">name</th>
+                <th ng-style="newStyle" ng-click="sortBy='city';reverse=!reverse">city</th>
+                <th ng-style="newStyle" ng-click="sortBy='ordertotal';reverse=!reverse">order Total</th>
+                <th ng-style="newStyle" ng-click="sortBy='joined';reverse=!reverse">Joined</th>
                 
             </tr>
             <tr ng-repeat="cust in customers |filter:customerFilter| orderBy:sortBy:reverse">
